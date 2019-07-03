@@ -46,10 +46,10 @@
     self.tableView.delegate = self; //set delegate equal to the view controller (self)
     
     [self getTweets];
-    [self makeRefreshControl];
+    [self getRefreshControl];
 }
 
-    - (void)makeRefreshControl {
+    - (void)getRefreshControl {
     //instantiates refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getTweets) forControlEvents:UIControlEventValueChanged];
@@ -88,8 +88,8 @@
    //     cell.retweetNameLabel.hidden = YES;
         cell.retweetButton.hidden = YES;
     }
-    
-   // [cell.profileImageView setImageWithURL:tweet.user.profileImageURLHTTPS];
+    NSURL *profilePictureURL = [NSURL URLWithString:tweet.user.profilePictureString];
+    [cell.profileImageView setImageWithURL:profilePictureURL];
     //   NSLog(@"Name: %@. Username: %@. Tweet text: %@", tweet.user.name, tweet.user.screenName, tweet.text);
     
     return cell;

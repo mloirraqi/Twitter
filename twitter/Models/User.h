@@ -11,8 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface User : NSObject
+//Defining the properties
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *screenName;
+@property (strong, nonatomic) NSString *profilePictureString;
 // TODO: Add properties
 
 // TODO: Create initializer
