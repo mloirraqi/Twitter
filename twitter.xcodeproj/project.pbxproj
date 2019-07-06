@@ -20,6 +20,7 @@
 		EA5B6F2022CB317200C4CC0A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5B6F1F22CB317200C4CC0A /* User.m */; };
 		EA5B6F2322CC110B00C4CC0A /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5B6F2222CC110B00C4CC0A /* Tweet.m */; };
 		EA5B6F2922CC75B600C4CC0A /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5B6F2722CC75B500C4CC0A /* TweetCell.m */; };
+		EA5B6F2C22CF2D2E00C4CC0A /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5B6F2B22CF2D2E00C4CC0A /* ComposeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		EA5B6F2222CC110B00C4CC0A /* Tweet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		EA5B6F2722CC75B500C4CC0A /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TweetCell.m; path = "/Users/mloirraqi/Desktop/Twitter/fbu_ios_twitter_objc-starter-project/twitter/Models/TweetCell.m"; sourceTree = "<absolute>"; };
 		EA5B6F2822CC75B600C4CC0A /* TweetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TweetCell.h; path = "/Users/mloirraqi/Desktop/Twitter/fbu_ios_twitter_objc-starter-project/twitter/Models/TweetCell.h"; sourceTree = "<absolute>"; };
+		EA5B6F2A22CF2D2E00C4CC0A /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		EA5B6F2B22CF2D2E00C4CC0A /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				6AD278D820BC4B950085BC29 /* AppDelegate.h */,
 				6AD278D920BC4B950085BC29 /* AppDelegate.m */,
 				6AD278DE20BC4B950085BC29 /* Main.storyboard */,
+				EA5B6F2A22CF2D2E00C4CC0A /* ComposeViewController.h */,
+				EA5B6F2B22CF2D2E00C4CC0A /* ComposeViewController.m */,
 				6AD278E120BC4B970085BC29 /* Assets.xcassets */,
 				6AD278E320BC4B970085BC29 /* LaunchScreen.storyboard */,
 				6AD278E620BC4B970085BC29 /* Info.plist */,
@@ -252,6 +257,7 @@
 				EA5B6F2922CC75B600C4CC0A /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				EA5B6F2022CB317200C4CC0A /* User.m in Sources */,
+				EA5B6F2C22CF2D2E00C4CC0A /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				EA5B6F2322CC110B00C4CC0A /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,

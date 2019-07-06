@@ -10,11 +10,15 @@
 #import "APIManager.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 
-@interface TimelineViewController ()  <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *tweetArray;  //stored by view controller
+@interface TimelineViewController ()  <ComposeViewControllerDelegate,UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) NSMutableArray *tweetArray;  //stored by view controller
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -41,7 +45,6 @@
     [super viewDidLoad];
     
     self.tableView.rowHeight = 140;
-    //    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self; //set data source equal to the view controller (self). once you're scrolling and want to show cells, use self for the data source methods (STEP 3)
     self.tableView.delegate = self; //set delegate equal to the view controller (self)
     
@@ -57,6 +60,15 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0]; //insertSubview is similar to addSubview, but puts the subview at specified index so there's no overlap with other elements. controls where it is in the view hierarchy
 }
 
+- (IBAction)didTapLogout:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    [[APIManager shared] logout];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -66,32 +78,18 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
-    //    TweetCell *cell = [[TweetCell alloc] init];
-    
     Tweet *tweet = self.tweetArray[indexPath.row];
     
+    cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
     cell.usernameLabel.text = tweet.user.screenName;
     cell.tweetContentLabel.text = tweet.text;
     cell.dateLabel.text = tweet.createdAtString;
     cell.favoriteCountLabel.text =  [NSString stringWithFormat:@"%i", tweet.favoriteCount];
     cell.retweetCountLabel.text = [NSString stringWithFormat:@"%i", tweet.retweetCount];
-    
-    NSLog(@"%@ did retweet: %d the user %@.", tweet.retweetedByUser.name, tweet.retweeted, tweet.retweetedByUser.name);
-    if (tweet.retweeted) {
-      //  cell.retweetNameLabel.text = [NSString stringWithFormat: @"%@ %@", tweet.retweetedByUser.name, @"Retweeted"];
-     //   cell.retweetNameLabel.hidden = NO;
-        cell.retweetButton.hidden = NO;
-    }
-    
-    else {
-   //     cell.retweetNameLabel.hidden = YES;
-        cell.retweetButton.hidden = YES;
-    }
     NSURL *profilePictureURL = [NSURL URLWithString:tweet.user.profilePictureString];
     [cell.profileImageView setImageWithURL:profilePictureURL];
-    //   NSLog(@"Name: %@. Username: %@. Tweet text: %@", tweet.user.name, tweet.user.screenName, tweet.text);
-    
+    cell.delegate = self;
     return cell;
 }
 
@@ -109,8 +107,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    //Sets as delegate for ComposeTweetController
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
 
+- (void)didTweet:(Tweet *)tweet {
+        [self.tweetArray addObject:tweet];
+        [self.tableView reloadData];
+    }
 
 
 @end

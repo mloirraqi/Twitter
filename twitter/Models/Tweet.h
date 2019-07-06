@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //declaring function from Tweet.m file before being able to access from imported file
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
