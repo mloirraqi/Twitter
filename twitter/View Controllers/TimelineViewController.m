@@ -115,9 +115,9 @@
 }
 
 - (void)didTweet:(Tweet *)tweet {
-        [self.tweetArray addObject:tweet];
-        [self.tableView reloadData];
-    }
+    [self.tweetArray insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
 
 
 @end

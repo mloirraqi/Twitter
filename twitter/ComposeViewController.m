@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tweetTextView.delegate = self;
+
     // Do any additional setup after loading the view.
 }
 - (IBAction)closeButton:(id)sender {
@@ -36,6 +38,15 @@
             // NSLog(@"Compose Tweet Success!");
         }
     }];
+}
+
+#pragma mark - setting text view
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    int characterLimit = 140;
+    NSString *newText = [self.tweetTextView.text stringByReplacingCharactersInRange:range withString:text];
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%lu characters typed", (unsigned long)newText.length];
+    return newText.length < characterLimit; 
 }
 
 /*
